@@ -33,11 +33,12 @@ If you use npm/yarn, run the equivalent `npm run <script>`.
 ## Commit & Pull Request Guidelines
 - Git history currently contains a single commit ("Initial commit from Create Next App"), so no established convention exists yet.
 - Use short, imperative commit subjects (e.g., "Add landing hero copy"). Optional: Conventional Commits (`feat:`, `fix:`) if the team adopts it.
-- Commit workflow (must pass before committing):
+- Commit workflow (MUST pass before committing):
   - `pnpm lint` for code quality checks.
   - `pnpm build` to ensure the build succeeds.
   - If lint/build fails, fix issues and re-run until green.
-  - Then `git add -A` and `git commit -m "<message>"`.
+  - IMPORTANT: Do not use `git add -A` unless explicitly requested; stage specific paths only.
+  - Then `git add <paths>` and `git commit -m "<message>"`.
 - Prefer atomic commits: one logical change per commit; avoid mixing refactors and feature changes in the same commit.
 - Stage only the files related to the change (`git add <path>`); split unrelated edits into separate commits even if that increases commit count.
 - Commit message format (Scheme A):
