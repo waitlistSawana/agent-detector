@@ -1,10 +1,15 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-- `app/` contains the Next.js App Router source (`app/page.tsx`, `app/layout.tsx`) and global styles (`app/globals.css`).
+- `src/app/` contains the Next.js App Router source (`src/app/page.tsx`, `src/app/layout.tsx`) and global styles (`src/app/globals.css`).
+- `src/components/` holds shared UI; shadcn primitives live in `src/components/ui` and custom wrappers live in `src/components/custom`.
+- `src/hooks/` contains reusable React hooks.
+- `src/lib/` contains utilities and shared helpers.
+- `convex/` contains Convex functions, schema, HTTP endpoints, and cron jobs.
 - `public/` holds static assets served at the site root.
 - `.next/` is build output (do not edit or commit).
-- Configuration lives in `next.config.ts`, `tsconfig.json`, `eslint.config.mjs`, and `postcss.config.mjs`.
+- `.next-docs/` stores the local Next.js docs index for agent guidance.
+- Configuration lives in `next.config.ts`, `tsconfig.json`, `eslint.config.mjs`, `postcss.config.mjs`, and `components.json`.
 - TypeScript path alias `@/*` maps to the repo root.
 
 ## Build, Test, and Development Commands
@@ -50,6 +55,20 @@ If you use npm/yarn, run the equivalent `npm run <script>`.
 - Use pagination with `paginationOptsValidator` and `.paginate()` for large lists.
 - Use cron jobs in `convex/crons.ts` with `cronJobs`, and reference internal functions via `internal`.
 - Use storage via `ctx.storage.getUrl()` and `_storage` system table; do not use deprecated metadata APIs.
+
+### UI/UX
+- Shadcn UI is already installed; use it as the primary source of UI primitives and patterns.
+- Use the Shadcn theme tokens and semantic CSS variables (e.g., `primary`, `bg-primary`, `text-muted-foreground`) for colors; do not introduce ad-hoc palettes or hard-coded values.
+- Do not edit components under `src/components/ui`; they are synced regularly and local changes will be overwritten. Update them only via the Shadcn CLI sync/import flow, except for minimal fixes to newly imported files when they fail to build.
+- For customizations to a Shadcn component, create a corresponding file under `src/components/custom` that wraps and re-exports the `src/components/ui` component via pass-through props, keeping a mirrored structure.
+- Larger UI pieces must be composed from these primitives and customized via `className`/variants rather than modifying the base UI components.
+- Use `cn` from `src/lib/utils` to merge `className` values instead of manual string concatenation.
+- Keep variants consistent with shadcn patterns (CVA `variant`/`size` semantics and naming).
+- Prefer `asChild` (Radix Slot) when swapping the root element to avoid extra wrappers and style drift.
+- Preserve shadcn/Radix state selectors (`data-[state]`, `data-[disabled]`, etc.) when styling interaction states.
+- Keep UI imports consistent with the project aliases (e.g., `@/components/ui`, `@/components/custom`) to avoid relative-path drift.
+- Keep theme/config choices aligned with `components.json`; do not introduce a parallel design system.
+- If a newly imported shadcn file has errors, you may apply minimal fixes to that new file; otherwise resolve API mismatches by syncing via the shadcn CLI or aligning the dependency version.
 
 ### TypeScript (Convex)
 > IMPORTANT: Read {convex/docs/best-practices/typescript.mdx} before TypeScript-related Convex work.
