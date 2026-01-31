@@ -6,8 +6,22 @@
     "ultracite/biome/react"
   ],
   "files": {
-    "ignore": [
-      "src/components/ui/**"
+    "includes": [
+      "**/*",
+      "!!**/src/components/ui/**",
+      "!!**/convex/_generated/**"
     ]
-  }
+  },
+  "overrides": [
+    {
+      "includes": ["src/lib/react-resizable-panels.ts"],
+      "linter": {
+        "rules": {
+          "performance": {
+            "noBarrelFile": "off"
+          }
+        }
+      }
+    }
+  ]
 }
