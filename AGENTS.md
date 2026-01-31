@@ -70,6 +70,10 @@ If you use npm/yarn, run the equivalent `npm run <script>`.
 - Keep theme/config choices aligned with `components.json`; do not introduce a parallel design system.
 - If a newly imported shadcn file has errors, you may apply minimal fixes to that new file; otherwise resolve API mismatches by syncing via the shadcn CLI or aligning the dependency version.
 
+### Frontend Interfaces
+> IMPORTANT: Read {.agents/skills/frontend-design/SKILL.md} before any frontend interface work.
+- Read the skill before building or styling any frontend interfaces (pages, components, layouts, dashboards, landing pages, or UI polish work).
+
 ### TypeScript (Convex)
 > IMPORTANT: Read {convex/docs/best-practices/typescript.mdx} before TypeScript-related Convex work.
 - Read the imported rules before working on Convex TypeScript migration, schemas, helpers, or client typing.
@@ -91,7 +95,7 @@ If you use npm/yarn, run the equivalent `npm run <script>`.
   - If lint/build fails, fix issues and re-run until green.
   - IMPORTANT: Do not use `git add -A` unless explicitly requested; stage specific paths only.
   - Then `git add <paths>` and `git commit -m "<message>"`.
-- Prefer atomic commits: one logical change per commit; avoid mixing refactors and feature changes in the same commit.
+- Prefer atomic commits: one cohesive unit of functionality/module/work per commit; avoid mixing unrelated changes, but don't split a single cohesive unit across multiple commits.
 - Stage only the files related to the change (`git add <path>`); split unrelated edits into separate commits even if that increases commit count.
 - Commit message format (Scheme A):
   - `<type>: <summary>`
