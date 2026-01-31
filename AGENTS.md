@@ -21,6 +21,11 @@ If you use npm/yarn, run the equivalent `npm run <script>`.
 - Use PascalCase for React components and camelCase for variables/functions.
 - Prefer Tailwind utility classes in JSX; keep shared styles in `app/globals.css`.
 
+## Development Conventions & Best Practices
+- Server-side first: prefer Server Components (no `use client`); only use Client Components when required.
+- Keep Client Components at leaf nodes; move interactivity down instead of marking parents as client.
+- It's acceptable to split components to preserve Server Component benefits.
+
 ## Testing Guidelines
 - No test framework is configured yet. If you add tests, include the runner in `package.json` and document how to run them here and in `README.md`.
 - Place tests near the code they cover (e.g., `app/<route>/__tests__/...`) or adopt a project-wide pattern and keep it consistent.
