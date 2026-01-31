@@ -26,6 +26,34 @@ If you use npm/yarn, run the equivalent `npm run <script>`.
 - Keep Client Components at leaf nodes; move interactivity down instead of marking parents as client.
 - It's acceptable to split components to preserve Server Component benefits.
 
+### Convex Development
+> IMPORTANT: Read {convex/docs/convex_rules.mdx} before any Convex-related work.
+- Read the imported rules before any Convex-related work (functions, schema, HTTP endpoints, pagination, cron jobs, or storage).
+- Treat Convex as a reactive database: queries are TypeScript in `convex/` and re-run when their data changes; rely on reactive updates instead of manual polling.
+- Keep queries read-only and use mutations for writes; group related writes in a single mutation for transactional consistency.
+- Keep `npx convex dev` running during development; it syncs `convex/` code, enforces schema changes, and regenerates types in `convex/_generated`.
+- Check in `convex/_generated` so typechecking works without running the CLI.
+- Await all promises in Convex functions; use argument validators and access control for every public function.
+- Define HTTP endpoints in `convex/http.ts` with `httpAction` and register exact paths explicitly.
+- Prefer queries/mutations over actions; use actions only for external side effects.
+- Avoid `.filter` on database queries; use indexes or pagination for large result sets; avoid `.collect` on unbounded queries.
+- Use helper functions to share logic and minimize `ctx.runQuery`/`ctx.runMutation` overhead.
+- Only schedule or call internal functions via `ctx.scheduler` / `ctx.run*` from internal function references.
+- Register public vs internal functions correctly (`query/mutation/action` vs `internalQuery/internalMutation/internalAction`) and call them via `api`/`internal` function references.
+- Keep schema rules in `convex/schema.ts` and follow index naming/order conventions.
+- Use supported validators (`v.int64()` for int64, `v.record()` for records) and always declare `args` and `returns` (use `v.null()` for no return).
+- Use pagination with `paginationOptsValidator` and `.paginate()` for large lists.
+- Use cron jobs in `convex/crons.ts` with `cronJobs`, and reference internal functions via `internal`.
+- Use storage via `ctx.storage.getUrl()` and `_storage` system table; do not use deprecated metadata APIs.
+
+### TypeScript (Convex)
+> IMPORTANT: Read {convex/docs/best-practices/typescript.mdx} before TypeScript-related Convex work.
+- Read the imported rules before working on Convex TypeScript migration, schemas, helpers, or client typing.
+- Keep Convex functions in `.ts` and keep `convex/tsconfig.json` in sync with project expectations.
+- Define a schema to unlock full typing for `ctx.db` and use generated `Doc`/`Id` types.
+- Prefer validator inference (`Infer`) and `WithoutSystemFields` when shaping types across server/client.
+- Use `FunctionReturnType` and `UsePaginatedQueryReturnType` for client types derived from API functions.
+
 ## Testing Guidelines
 - No test framework is configured yet. If you add tests, include the runner in `package.json` and document how to run them here and in `README.md`.
 - Place tests near the code they cover (e.g., `app/<route>/__tests__/...`) or adopt a project-wide pattern and keep it consistent.
