@@ -3,6 +3,8 @@
 ## Project Structure & Module Organization
 - `src/app/` contains the Next.js App Router source (`src/app/page.tsx`, `src/app/layout.tsx`) and global styles (`src/app/globals.css`).
 - `src/components/` holds shared UI; shadcn primitives live in `src/components/ui` and custom wrappers live in `src/components/custom`.
+- Except for Next.js default folder names, create new components (including page components) under mirrored paths in `src/components/`.
+- Create server actions under mirrored paths in `src/actions/`, and only promote a path when it is used by more than two components.
 - `src/hooks/` contains reusable React hooks.
 - `src/lib/` contains utilities and shared helpers.
 - `convex/` contains Convex functions, schema, HTTP endpoints, and cron jobs.
@@ -11,6 +13,11 @@
 - `.next-docs/` stores the local Next.js docs index for agent guidance.
 - Configuration lives in `next.config.ts`, `tsconfig.json`, `eslint.config.mjs`, `postcss.config.mjs`, and `components.json`.
 - TypeScript path alias `@/*` maps to the repo root.
+
+## Product Docs
+- PRD index: `docs/prd.md`
+- Product summary: We are building a "trustworthy output system" for creators and small teams that detects AI traces with explainable risk insights, humanizes content with goal-driven rewriting, and progressively trains a personal agent so outputs sound consistently like the author.
+- Agents MUST read `docs/prd.md` to understand the product before any product-related work.
 
 ## Build, Test, and Development Commands
 Use `pnpm` (see `packageManager` in `package.json`).
@@ -36,6 +43,7 @@ If you use npm/yarn, run the equivalent `npm run <script>`.
 
 ### Page & Routing Plan
 - Keep `/` as the SEO-first landing page that introduces the product and its core modules (AI Content Detector, Humanizer, Personal Agent training).
+- Place the landing page under `src/app/(home)/` (route group) to keep home-specific structure isolated.
 - Use semantic, hierarchical routes for feature content and deeper pages (e.g., `/detector`, `/humanizer`, `/agents`).
 - Favor category-to-detail nesting for deeper content, similar to `/animal` and `/animal/cat`.
 - Prefer short, descriptive slugs over query-only navigation; keep route names noun-based and consistent.
