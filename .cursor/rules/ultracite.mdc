@@ -1,0 +1,7 @@
+# Ultracite
+
+This project uses Ultracite (Biome) for formatting and linting.
+
+- Run `pnpm fix` or `pnpm format` to apply fixes.
+- Run `pnpm lint` to check without modifying files.
+- Avoid running other formatters to prevent conflicts.
