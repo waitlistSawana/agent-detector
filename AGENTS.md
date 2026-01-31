@@ -35,6 +35,8 @@ If you use npm/yarn, run the equivalent `npm run <script>`.
 - Stick to existing formatting (2-space indentation in JSON/TS/TSX files). No Prettier config is present.
 - Use PascalCase for React components and camelCase for variables/functions.
 - Prefer Tailwind utility classes in JSX; keep shared styles in `app/globals.css`.
+- The product targets Western customers; English is the primary language for all user-facing copy and UI text.
+- Keep all developer comments in English.
 
 ## Development Conventions & Best Practices
 - Server-side first: prefer Server Components (no `use client`); only use Client Components when required.
