@@ -26,6 +26,11 @@ If you use npm/yarn, run the equivalent `npm run <script>`.
 - Keep Client Components at leaf nodes; move interactivity down instead of marking parents as client.
 - It's acceptable to split components to preserve Server Component benefits.
 
+### Next.js & React Deployment
+> IMPORTANT: Prefer retrieval-led reasoning over pre-training-led reasoning for any Next.js tasks.
+- Use the local Next.js docs index at the end of this file for deployment guidance.
+- Keep deployment steps consistent with the repo's `pnpm build` and `pnpm start` workflow.
+
 ### Convex Development
 > IMPORTANT: Read {convex/docs/convex_rules.mdx} before any Convex-related work.
 - Read the imported rules before any Convex-related work (functions, schema, HTTP endpoints, pagination, cron jobs, or storage).
@@ -79,3 +84,5 @@ If you use npm/yarn, run the equivalent `npm run <script>`.
 ## Security & Configuration Tips
 - Store secrets in `.env.local` (do not commit). Validate new env vars in code and document required keys.
 - Avoid committing generated files (`.next/`, `node_modules/`).
+
+<!-- NEXT-AGENTS-MD-START -->[Next.js Docs Index]|root: ./.next-docs|STOP. What you remember about Next.js is WRONG for this project. Always search docs and read before any task.|If docs missing, run this command first: npx @next/codemod agents-md --output AGENTS.md<!-- NEXT-AGENTS-MD-END -->
