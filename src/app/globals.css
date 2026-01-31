@@ -6,8 +6,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-code);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -121,5 +121,25 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@keyframes scanline {
+  0% {
+    opacity: 0;
+    transform: translateY(-35%);
+  }
+  45% {
+    opacity: 0.35;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(35%);
+  }
+}
+
+@layer utilities {
+  .animate-scanline {
+    animation: scanline 8s ease-in-out infinite;
   }
 }
