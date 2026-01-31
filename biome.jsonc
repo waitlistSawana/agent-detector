@@ -6,11 +6,7 @@
     "ultracite/biome/react"
   ],
   "files": {
-    "includes": [
-      "**/*",
-      "!!**/src/components/ui/**",
-      "!!**/convex/_generated/**"
-    ]
+    "includes": ["**/*", "!!**/src/components/ui", "!!**/convex/_generated"]
   },
   "overrides": [
     {

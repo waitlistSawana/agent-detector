@@ -34,6 +34,13 @@ If you use npm/yarn, run the equivalent `npm run <script>`.
 - Keep Client Components at leaf nodes; move interactivity down instead of marking parents as client.
 - It's acceptable to split components to preserve Server Component benefits.
 
+### Page & Routing Plan
+- Keep `/` as the SEO-first landing page that introduces the product and its core modules (AI Content Detector, Humanizer, Personal Agent training).
+- Use semantic, hierarchical routes for feature content and deeper pages (e.g., `/detector`, `/humanizer`, `/agents`).
+- Favor category-to-detail nesting for deeper content, similar to `/animal` and `/animal/cat`.
+- Prefer short, descriptive slugs over query-only navigation; keep route names noun-based and consistent.
+- This section will expand with agreed routing conventions and feature planning details as the product evolves.
+
 ### Next.js & React Deployment
 > IMPORTANT: Prefer retrieval-led reasoning over pre-training-led reasoning for any Next.js tasks.
 - Use the local Next.js docs index at the end of this file for deployment guidance.
@@ -99,6 +106,7 @@ If you use npm/yarn, run the equivalent `npm run <script>`.
   - If lint/build fails, fix issues and re-run until green.
   - IMPORTANT: Do not use `git add -A` unless explicitly requested; stage specific paths only.
   - Then `git add <paths>` and `git commit -m "<message>"`.
+- After completing a functional module (an atomic, user-visible unit of work), run the commit workflow and create a commit before starting the next module, unless the user explicitly asks not to commit.
 - Prefer atomic commits: one cohesive unit of functionality/module/work per commit; avoid mixing unrelated changes, but don't split a single cohesive unit across multiple commits.
 - Stage only the files related to the change (`git add <path>`); split unrelated edits into separate commits even if that increases commit count.
 - Commit message format (Scheme A):
